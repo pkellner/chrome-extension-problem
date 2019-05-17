@@ -1,6 +1,8 @@
 let nasaPageShowing = false;
 let firstTime = true;
 
+
+
 /**
  * CSS to hide everything on the page,
  * except for elements that have the "beastify-image" class.

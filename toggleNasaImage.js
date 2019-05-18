@@ -1,4 +1,4 @@
-const nothingUrl = chrome.extension.getURL("nothing.jpeg");
+//const nothingUrl = chrome.extension.getURL("nothing.jpeg");
 // var url =
 //   "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/p5020056.jpg";
 //
@@ -36,7 +36,34 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   );
   if (request.url) {
     console.log(`toggleNasaImage.js:${request.url}`);
-    sendResponse({xx: 'xx'});
+
+    var styles = `
+        body.imagecover::before {
+        content: "";
+        background-image: url("${request.url}");
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        display: inline;
+      }
+      `;
+
+    var styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = styles;
+    document.head.appendChild(styleSheet);
+
+    document.body.className = "imagecover fade";
+    setTimeout(() => {
+      document.body.className = "imagecover";
+    }, 100); // make 0
+
+    sendResponse({ xx: "xx" });
   }
   // if (request.greeting == "hello")
   //   sendResponse({farewell: "goodbye"});

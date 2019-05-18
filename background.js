@@ -6,14 +6,19 @@
 
 // var urlxxx =
 //   "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/p5020056.jpg";
-// var url =
-//   "https://ddrt7tzfkdwdf.cloudfront.net/Images/silicon-valley-code-camp.png";
+//  var url =
+//    "https://ddrt7tzfkdwdf.cloudfront.net/Images/silicon-valley-code-camp.png";
 
-var url = "https://ddrt7tzfkdwdf.cloudfront.net/Images/organize01.jpg";
+//var url = "https://ddrt7tzfkdwdf.cloudfront.net/Images/organize01.jpg";
+
+
 
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.executeScript({ file: "toggleNasaImage.js" }, function() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+      var url = "http://localhost:8000/3.jpg";
+      //url = window.localStorage.getItem("pict");
+      console.log(`backupground.js:${url}`);
       chrome.tabs.sendMessage(tabs[0].id, { url: url }, function(response) {
         console.log("abcdefg");
       });

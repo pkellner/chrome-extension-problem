@@ -58,10 +58,17 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     styleSheet.innerText = styles;
     document.head.appendChild(styleSheet);
 
-    document.body.className = "imagecover fade";
-    setTimeout(() => {
-      document.body.className = "imagecover";
-    }, 100); // make 0
+
+    if ($("body").hasClass("imagecover")){
+      $("body").removeClass("imagecover");
+    } else {
+      $("body").addClass("imagecover fade");
+      //document.body.className = "imagecover fade";
+      setTimeout(() => {
+        //document.body.className = "imagecover";
+        $("body").removeClass("fade");
+      }, 100); // make 0
+    }
 
     sendResponse({ xx: "xx" });
   }

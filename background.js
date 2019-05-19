@@ -11,13 +11,16 @@
 
 //var url = "https://ddrt7tzfkdwdf.cloudfront.net/Images/organize01.jpg";
 
-
+if (window.localStorage.getItem("pict") === null) {
+  console.log("setting pict");
+  window.localStorage.setItem("pict", "http://localhost:8000/3.jpg");
+}
 
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.executeScript({ file: "toggleNasaImage.js" }, function() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      var url = "http://localhost:8000/3.jpg";
-      //url = window.localStorage.getItem("pict");
+      //var url = "http://localhost:8000/3.jpg";
+      url = window.localStorage.getItem("pict");
       console.log(`backupground.js:${url}`);
       chrome.tabs.sendMessage(tabs[0].id, { url: url }, function(response) {
         console.log("abcdefg");
@@ -114,7 +117,7 @@ chrome.browserAction.onClicked.addListener(() => {
 //   chrome.tabs.sendMessage(tab.id, 'whatever value; String, object, whatever');
 // });
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-  // Handle message.
-  // In this example, message === 'whatever value; String, object, whatever'
-});
+// chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+//   // Handle message.
+//   // In this example, message === 'whatever value; String, object, whatever'
+// });

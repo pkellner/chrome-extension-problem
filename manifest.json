@@ -9,11 +9,12 @@
   },
   "permissions": ["activeTab", "storage","contextMenus"],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js","lib/jquery.min.js","toggleNasaImage.js"]
   },
   "content_scripts": [
     {
       "matches": ["http://*/*","https://*/*"],
+      "js": ["lib/jquery.min.js"],
       "css": ["BodyEnhance.css"]
     }
   ],

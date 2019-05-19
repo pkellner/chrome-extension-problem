@@ -1,32 +1,4 @@
-//const nothingUrl = chrome.extension.getURL("nothing.jpeg");
-// var url =
-//   "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/p5020056.jpg";
-//
-// var styles = `
-//   body.imagecover::before {
-//   content: "";
-//   background-image: url("${url}");
-//   background-size: contain;
-//   background-repeat: no-repeat;
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   z-index: 9999;
-//   display: inline;
-// }
-// `;
-//
-// var styleSheet = document.createElement("style");
-// styleSheet.type = "text/css";
-// styleSheet.innerText = styles;
-// document.head.appendChild(styleSheet);
-//
-// document.body.className = "imagecover fade";
-// setTimeout(() => {
-//   document.body.className = "imagecover";
-// }, 100); // make 0
+let firstTime = true;
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   console.log(
@@ -37,7 +9,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.url) {
     console.log(`toggleNasaImage.js:${request.url}`);
 
-    var styles = `
+    if (firstTime === true) {
+      firstTime = false;
+      var styles = `
         body.imagecover::before {
         content: "";
         background-image: url("${request.url}");
@@ -53,10 +27,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       }
       `;
 
-    var styleSheet = document.createElement("style");
-    styleSheet.type = "text/css";
-    styleSheet.innerText = styles;
-    document.head.appendChild(styleSheet);
+      var styleSheet = document.createElement("style");
+      styleSheet.type = "text/css";
+      styleSheet.innerText = styles;
+      document.head.appendChild(styleSheet);
+    }
 
 
     if ($("body").hasClass("imagecover")){
@@ -192,3 +167,33 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 //   display: inline;
 // }
 // `;
+
+//const nothingUrl = chrome.extension.getURL("nothing.jpeg");
+// var url =
+//   "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/p5020056.jpg";
+//
+// var styles = `
+//   body.imagecover::before {
+//   content: "";
+//   background-image: url("${url}");
+//   background-size: contain;
+//   background-repeat: no-repeat;
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 9999;
+//   display: inline;
+// }
+// `;
+//
+// var styleSheet = document.createElement("style");
+// styleSheet.type = "text/css";
+// styleSheet.innerText = styles;
+// document.head.appendChild(styleSheet);
+//
+// document.body.className = "imagecover fade";
+// setTimeout(() => {
+//   document.body.className = "imagecover";
+// }, 100); // make 0

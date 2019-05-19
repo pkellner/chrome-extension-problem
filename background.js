@@ -1,3 +1,57 @@
+if (window.localStorage.getItem("pict") === null) {
+  console.log("setting pict");
+  window.localStorage.setItem("pict", "http://localhost:8000/3.jpg");
+}
+
+chrome.browserAction.onClicked.addListener(() => {
+  chrome.tabs.executeScript({ file: "toggleNasaImage.js" }, function() {
+    chrome.tabs.query(
+      { active: true, currentWindow: true, currentWindow: true },
+      function(tabs) {
+        let tabId;
+        if (tabs && tabs.length > 0) {
+          tabId = tabs[0].id;
+          console.log(`background.js:tabs passed in valid`);
+        } else {
+          console.log(`background.js:tabs passed in not valid`);
+          tabId = activeTabId;
+        }
+        url = window.localStorage.getItem("pict");
+        console.log(`backupground.js:${url}`);
+        chrome.tabs.sendMessage(tabId, { url: url }, function(response) {
+          console.log(`background.js:message sent succesfully`);
+        });
+      }
+    );
+  });
+});
+
+// bug fix for dec tools problem below
+let activeTabId;
+
+chrome.tabs.onActivated.addListener(function(activeInfo) {
+  activeTabId = activeInfo.tabId;
+});
+
+function getActiveTab(callback) {
+  chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
+    var tab = tabs[0];
+
+    if (tab) {
+      callback(tab);
+    } else {
+      chrome.tabs.get(activeTabId, function(tab) {
+        if (tab) {
+          callback(tab);
+        } else {
+          console.log("No active tab identified.");
+        }
+      });
+    }
+  });
+}
+// bug fix for dec tools problem above
+
 // chrome.browserAction.onClicked.addListener(() => {
 //   chrome.tabs.executeScript({
 //     file: "toggleNasaImage.js"
@@ -10,24 +64,6 @@
 //    "https://ddrt7tzfkdwdf.cloudfront.net/Images/silicon-valley-code-camp.png";
 
 //var url = "https://ddrt7tzfkdwdf.cloudfront.net/Images/organize01.jpg";
-
-if (window.localStorage.getItem("pict") === null) {
-  console.log("setting pict");
-  window.localStorage.setItem("pict", "http://localhost:8000/3.jpg");
-}
-
-chrome.browserAction.onClicked.addListener(() => {
-  chrome.tabs.executeScript({ file: "toggleNasaImage.js" }, function() {
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      //var url = "http://localhost:8000/3.jpg";
-      url = window.localStorage.getItem("pict");
-      console.log(`backupground.js:${url}`);
-      chrome.tabs.sendMessage(tabs[0].id, { url: url }, function(response) {
-        console.log("abcdefg");
-      });
-    });
-  });
-});
 
 // chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
 //   chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function(

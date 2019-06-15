@@ -1,6 +1,6 @@
 body {
   opacity: 1;
-  transition: 0.5s opacity;
+  transition: .5s opacity;
 }
 
 body.fade {

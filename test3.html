@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"
+    ></script>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .slide {
+            position: relative;
+            top: -50vh;
+            animation: slideDown 10s linear forwards;
+        }
+
+        .slide-image {
+            background-size: cover;
+            height: 50vh;
+            width: 100vw;
+        }
+
+        @keyframes slideDown {
+            from { top: -50vh; }
+            to { top: 0; }
+        }
+    </style>
+
+    <script type="application/javascript">
+      $(document).ready(function() {
+        $("#mybox").addClass("slideDown");
+      });
+    </script>
+</head>
+<body>
+
+    <img src="stars.jpeg" class="slide-image" />
+    <div>
+        hello page content
+    </div>
+
+
+</body>
+</html>

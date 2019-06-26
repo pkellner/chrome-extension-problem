@@ -29,6 +29,8 @@ chrome.browserAction.onClicked.addListener(() => {
   });
 });
 
+
+
 // bug fix for dec tools problem below
 // https://stackoverflow.com/questions/28786723/why-doesnt-chrome-tabs-query-return-the-tabs-url-when-called-using-requirejs
 let activeTabId;

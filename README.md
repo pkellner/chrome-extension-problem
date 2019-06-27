@@ -6,7 +6,8 @@ The extension includes:
 
 * a browser action with a popup including HTML, CSS, and JS
 * a content script
-* three images, each of a different beast, packaged as web accessible resources
+* three images, each of a different beast, packaged as web accessible 
+resources
 
 When the user clicks the browser action button, the popup is shown, enabling
 the user to choose one of three beasts.

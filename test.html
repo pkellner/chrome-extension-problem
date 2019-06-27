@@ -1,50 +1,57 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
-    <style>
-      tml, body {
-        padding: 0;
-        margin: 0;
-      }
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script
+          src="https://code.jquery.com/jquery-3.4.1.min.js"
+          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+          crossorigin="anonymous"
+        ></script>
+        <style>
+          html,
+          body {
+            padding: 0;
+            margin: 0;
+          }
 
-      .slide {
-        position: relative;
-        top: -50vh;
-        animation: slideDown 1s linear forwards;
-      }
+          .slide {
+            position: relative;
+            top: -50vh;
+            animation: slideDown 4s linear forwards;
+          }
 
-      .slide-image {
-        background-image: url('https://via.placeholder.com/800x800.jpg');
-        background-size: cover;
-        height: 50vh;
-        width: 100vw;
-      }
+          .slide-image {
+            background-image: url("https://via.placeholder.com/800x800.jpg");
+            background-size: cover;
+            height: 50vh;
+            width: 100vw;
+          }
 
-      @keyframes slideDown {
-        from { top: -50vh; }
-        to { top: 0; }
-      }
-    </style>
+          @keyframes slideDown {
+            from {
+              top: -50vh;
+            }
+            to {
+              top: 0;
+            }
+          }
+        </style>
 
-    <script type="application/javascript">
-      $(document).ready(function() {
-        //$("#mybox").addClass("slideDown");
-      });
-    </script>
-  </head>
-  <body>
-    <div>
+        <script type="application/javascript">
+          $(document).ready(function() {
+            $("#myimage").addClass("slideDown");
+          });
+        </script>
+      </head>
+      <body class="slide">
+          <div>
+            <img src="stars.jpeg" class="slide-image" id="myimage" />
+          </div>
+          <hr />
+          <br />
+          <img src="stars.jpeg" />
 
-      <img src="stars.jpeg" id="xxx" class="slide" />
-      <hr/><br/>
-      <img src="stars.jpeg" />
-    </div>
-  </body>
-</html>
+      <span>text of page</span>
+      </body>
+    </html>
